@@ -1,0 +1,52 @@
+<!--
+SELECT-FILTER
+-->
+
+{% if is_search_page %}
+{% else %}
+    <div class="filters-sticky row sticky-top d-flex justify-content-center" style="margin-top: 33px">
+        <div class="col-sm-12 col-md-8 col-lg-8">
+            <select class="form-select" aria-label="Default select example">
+                <option value="rating">За рейтингом</option>
+                <option value="cheap">Від дешевих до дорогих</option>
+                <option value="expansive">Від дорогих до дешевих</option>
+                <option value="novelties">Новинки</option>
+            </select>
+        </div>
+    </div>
+{% endif %}
+
+<main>
+    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+
+            {% for book in book_list %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm"><img
+                            src="{{ book.image }}"
+                            class="card-img-top" alt="">
+                        <div class="card-body">
+                            <div class="clearfix mb-3"><span
+                                    class="float-start badge rounded-pill bg-success">{{ book.price }} грн</span>
+                                <span class="float-end"><a href="{{ book.get_absolute_url }}"
+                                                           style="text-decoration: none">переглянути</a></span>
+                            </div>
+                            <h5 class="card-title">{{ book.title }}
+                                <p style="font-size: 15px">Автор:
+                                    {% for author in book.author.all %}
+                                        {{ author }}
+                                    {% endfor %}
+                                </p>
+                            </h5>
+                            <div class="d-grid gap-2 my-4">
+                                <button value="{{ book.pk }}" class="add-to-cart btn btn-warning">
+                                    Купити
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>

@@ -1,0 +1,282 @@
+<div class="superNav border-bottom py-2 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerOnMobile">
+                <span class="d-none d-lg-inline-block d-md-inline-block d-sm-inline-block d-xs-none me-3"><strong>booklover@gmail.com</strong></span>
+                <span class="me-3"><i
+                        class="fa-solid fa-phone me-1 text-warning"></i> <strong>0-000-000-000</strong></span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none d-lg-block d-md-block-d-sm-block d-xs-none text-end">
+                <span class="me-3"><i class="fa-solid fa-truck text-muted me-1"></i><a class="text-muted" href="#">Доставка</a></span>
+                <span class="me-3"><i class="fa-solid fa-file  text-muted me-2"></i><a class="text-muted" href="#">Політика</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-white navbar-light p-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'book_list' %}"><i class="fa-solid fa-shop me-2"></i>
+            <strong>КНИГОЛЮБ</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
+            <div class="input-group">
+                <span class="border-warning input-group-text bg-warning text-white"><i
+                        class="fa-solid fa-magnifying-glass"></i></span>
+                <input placeholder="Пошук товарів" type="text" class="input-search-product form-control border-warning"
+                       style="color:#ff5722">
+                <button class="search-button-control btn btn-warning text-white">
+                    Знайти
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="ms-auto d-none d-lg-block">
+                <div class="input-group">
+                    <span class="border-warning input-group-text bg-warning text-white"><i
+                            class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="input-search-product form-control border-warning" style="color:#ffc107"
+                           placeholder="Пошук товарів">
+                    <button class="search-button-control btn btn-warning text-white">Знайти
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <ul class="navbar-nav ms-auto ">
+                <li class="nav-item dropdown">
+                    <div class="dropdown">
+                        <a class="nav-link mx-2 text-uppercase active dropdown-toggle" data-bs-toggle="dropdown"
+                           aria-current="page"
+                           href="#">Книжки</a>
+                        <ul class="dropdown-menu" style="z-index: 1500">
+                            {% for subcategory in subcategories %}
+                                <li><a class="dropdown-item" href="{{ subcategory.get_absolute_url }}">
+                                    {{ subcategory }}
+                                </a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase" href="#">Оплата</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase" href="#">Блог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase" href="#">Про нас</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto ">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase" href="#"
+                       data-bs-toggle="modal"
+                       data-bs-target="#CartModal">
+                        <i class="fa-solid fa-cart-shopping me-1"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                             class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase" href="#"
+                       data-bs-toggle="modal"
+                       data-bs-target="#LoginModal">
+                        <i class="fa-solid fa-circle-user me-1"></i>
+                        {% if user.is_active %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                 class="bi bi-person-check" viewBox="0 0 16 16" style="color: #31a031">
+                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                <path fill-rule="evenodd"
+                                      d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                 class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal Login -->
+<div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% if user.is_active %}
+                    <h5 class="modal-title" id="exampleModalLabel">Особистий кабінет</h5>
+                {% else %}
+                    <h5 class="modal-title" id="exampleModalLabel">Вхід</h5>
+                {% endif %}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% if user.is_active %}
+                    ОСОБИСТИЙ КАБІНЕТ
+                    <div class="modal-footer">
+                        <form method="get">
+                            <button id="logout" name="logout" value="True" type="submit"
+                                    class="btn btn-danger">
+                                Вийти із
+                                аккаунта
+                            </button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="container">
+                        <div class="row d-flex gy-3">
+                            <form id="signup" action="" method="post">
+                                {% csrf_token %}
+                                <div class="p-2">
+                                    <h5>Телефон або e-mail</h5>
+                                    {{ form.username }}
+                                </div>
+                                <div class="p-2">
+                                    <h5>Пароль</h5>
+                                    {{ form.password }}
+                                </div>
+                            </form>
+                            <br>
+                            <a href="#">Немає аккаунта?</a>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="login" form="signup" type="submit" class="btn btn-warning">Увійти
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Cart -->
+<div class="cartWrapper" id="cartWrapper">
+    <div class="modal fade" id="CartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="exampleModalLabel">Корзина</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <section class="h-100" style="background-color: #eee;">
+                        <div class="container h-100 py-5">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-10">
+
+                                    {% for book_pk, book_values in cart_storage.items %}
+
+                                        <div class="card rounded-3 mb-4" id="divCard{{ book_pk }}">
+                                            <div class="card-body p-4">
+                                                <div class="row d-flex justify-content-between align-items-center">
+                                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                                        <img
+                                                                src="{{ book_values.image }}"
+                                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                                        <p class="lead fw-normal mb-2">{{ book_values.title }}</p>
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                        <button id="buttonMinus{{ book_pk }}"
+                                                                onclick="minusOne({{ book_pk }})"
+                                                                class="btn btn-link px-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                 height="16"
+                                                                 fill="currentColor" class="bi bi-dash-lg"
+                                                                 viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                      d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+                                                            </svg>
+
+                                                        </button>
+
+                                                        <input id="quantityOfProduct{{ book_pk }}" min="0"
+                                                               name="{{ book_pk }}" value="{{ book_values.quantity }}"
+                                                               type="number"
+                                                               class="inputQuantityInteger form-control form-control-sm"/>
+
+                                                        <button id="buttonPlus{{ book_pk }}"
+                                                                onclick="plusOne({{ book_pk }})"
+                                                                class="btn btn-link px-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                 height="16"
+                                                                 fill="currentColor" class="bi bi-plus-lg"
+                                                                 viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                        <h5 class="mb-0 text-center" style="margin-top: 35px">
+                                                            {{ book_values.price }}</h5>
+                                                    </div>
+
+                                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                        <div class="deleteFromCart" id="{{ book_pk }}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                 height="25"
+                                                                 fill="currentColor"
+                                                                 class="bi bi-trash" viewBox="0 0 16 16">
+                                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                                <path fill-rule="evenodd"
+                                                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                                    {% if cart_storage %}
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <button type="button" class="btn btn-warning btn-block btn-lg">
+                                                    <a style="text-decoration: none; color: white"
+                                                       href="{% url 'checkout_page' %}">
+                                                        Оформити
+                                                        замовлення
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <h1>
+                                            Корзина пуста
+                                        </h1>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

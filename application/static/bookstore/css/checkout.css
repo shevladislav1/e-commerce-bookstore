@@ -1,0 +1,14 @@
+.city-list-item:hover {
+    background: #cbd9dd;
+}
+
+.city-list {
+    overflow: auto; /* Добавляем полосы прокрутки */
+    width: 300px; /* Ширина блока */
+    height: 150px; /* Высота блока */
+}
+
+.city-list-item {
+    width: 300px;
+}
+
